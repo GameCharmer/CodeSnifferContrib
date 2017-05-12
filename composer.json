@@ -1,0 +1,27 @@
+{
+  "name": "gcworld/code_sniffer_contrib",
+  "description": "Custom PHP Code Sniff",
+  "type": "library",
+  "keywords": [
+    "phpcs",
+    "standards"
+  ],
+  "license": "BSD-3-Clause",
+  "authors": [
+    {
+      "name": "GameCharmer"
+    }
+  ],
+  "autoload": {
+    "classmap": [
+      "src/Sniffs/"
+    ]
+  },
+  "require": {
+    "php": ">=7.1",
+    "ext-tokenizer": "*",
+    "ext-xmlwriter": "*",
+    "ext-simplexml": "*",
+    "squizlabs/php_codesniffer": "^2.8"
+  }
+}

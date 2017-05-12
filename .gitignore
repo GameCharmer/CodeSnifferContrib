@@ -1,0 +1,12 @@
+.idea/*
+.nano/*
+.composer/*
+.ssh/*
+private/*
+config/config.ini
+.bash_history
+.cache/*
+.config/*
+.local/*
+.selected_editor
+vendor/*
