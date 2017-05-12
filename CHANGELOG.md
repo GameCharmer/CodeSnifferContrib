@@ -8,6 +8,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
  
  
+[1.0.1](https://github.com/GameCharmer/CodeSnifferContrib/releases/tag/1.0.1)
+ - @GameCharmer Kill that old out-dated rule of underscores in method names having anything to do with visibility
+
+
 [1.0.0](https://github.com/GameCharmer/CodeSnifferContrib/releases/tag/1.0.0)
  - @GameCharmer official first working release!
 
