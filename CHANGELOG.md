@@ -8,6 +8,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
  
  
+[1.0.0](https://github.com/GameCharmer/CodeSnifferContrib/releases/tag/1.0.0)
+ - @GameCharmer official first working release!
+
+
 [0.0.1](https://github.com/GameCharmer/CodeSnifferContrib/releases/tag/0.0.1)
  - @GameCharmer Directory adjustment
 
