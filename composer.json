@@ -14,7 +14,7 @@
   ],
   "autoload": {
     "classmap": [
-      "src/Sniffs/"
+      "src/CodeSnifferContrib/Sniffs/"
     ]
   },
   "require": {
