@@ -14,10 +14,10 @@
         <exclude name="Squiz.Commenting.FileComment.Missing"/>
         <exclude name="Squiz.Commenting.FunctionComment"/><!-- We override this one -->
         <exclude name="Squiz.Commenting.ClassComment"/><!-- We override this one -->
+        <exclude name="Squiz.Commenting.VariableComment"/><!-- We override this one -->
         <exclude name="Squiz.Commenting.InlineComment"/>
         <exclude name="Squiz.Commenting.LongConditionClosingComment.Missing"/>
         <exclude name="Squiz.Commenting.PostStatementComment.Found"/>
-        <exclude name="Squiz.Commenting.VariableComment"/>
     </rule>
     <rule ref="PSR2">
         <exclude name="Squiz.Classes.ValidClassName.NotCamelCaps"/>
