@@ -8,6 +8,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
  
  
+[1.0.4](https://github.com/GameCharmer/CodeSnifferContrib/releases/tag/1.0.4)
+ - @GameCharmer add support for PHPMD Suppress Warnings tag 
+
+
 [1.0.3](https://github.com/GameCharmer/CodeSnifferContrib/releases/tag/1.0.3)
  - @GameCharmer remove that pesky echo
 

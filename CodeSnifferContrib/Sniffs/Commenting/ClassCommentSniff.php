@@ -65,6 +65,10 @@ class CodeSnifferContrib_Sniffs_Commenting_ClassCommentSniff implements PHP_Code
             if (in_array(strtolower($tokens[$tag]['content']),['@package','@todo','@todo:'])) {
                 continue;
             }
+            if (strpos($tokens[$tag]['content'],'@SuppressWarnings') === 0) {
+                continue;
+            }
+
             $phpcsFile->addWarning($error, $tag, 'TagNotAllowed', $data);
         }
 
