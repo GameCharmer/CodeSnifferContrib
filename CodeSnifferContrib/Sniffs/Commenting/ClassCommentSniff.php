@@ -62,6 +62,9 @@ class CodeSnifferContrib_Sniffs_Commenting_ClassCommentSniff implements PHP_Code
             if (strpos($tokens[$tag]['content'], '@router') === 0) {
                 continue;
             }
+            if (strpos($tokens[$tag]['content'], '@om-') === 0) {
+                continue;
+            }
             if (in_array(strtolower($tokens[$tag]['content']),['@package','@todo','@todo:'])) {
                 continue;
             }
