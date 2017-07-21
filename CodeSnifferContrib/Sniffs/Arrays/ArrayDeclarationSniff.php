@@ -4,8 +4,10 @@ class CodeSnifferContrib_Sniffs_Arrays_ArrayDeclarationSniff implements PHP_Code
 {
 
     const KEY_THINGS = [
-        T_RETURN,
         T_VARIABLE,
+        T_RETURN,
+        T_OPEN_PARENTHESIS,
+        T_FUNCTION,
     ];
 
 
@@ -298,6 +300,17 @@ class CodeSnifferContrib_Sniffs_Arrays_ArrayDeclarationSniff implements PHP_Code
 
         $variable = $phpcsFile->findPrevious(self::KEY_THINGS, $arrayStart, null, false, null, true);
         $arrayNameStart = $tokens[$variable]['column'];
+        $arrayLocStart = floatval($tokens[$variable]['line'].'.'.$tokens[$variable]['column']);
+
+        // Find the previous open.
+        $variable = $phpcsFile->findPrevious($this->register(), $arrayStart, null, false, null, true);
+        $openLocStart = floatval($tokens[$variable]['line'].'.'.$tokens[$variable]['column']);
+
+        if(($openLocStart-1) < $arrayLocStart) {
+            $expected = ($arrayNameStart - 1);
+        } else {
+            $expected = (floor($openLocStart) - 8);
+        }
 
         // Check the closing bracket is on a new line.
         $lastContent = $phpcsFile->findPrevious(T_WHITESPACE, ($arrayEnd - 1), $arrayStart, true);
@@ -307,16 +320,17 @@ class CodeSnifferContrib_Sniffs_Arrays_ArrayDeclarationSniff implements PHP_Code
             if ($fix === true) {
                 $phpcsFile->fixer->addNewlineBefore($arrayEnd);
             }
-        } else if ($tokens[$arrayEnd]['column'] !== $arrayNameStart) {
-            // Check the closing bracket is lined up under the "a" in array.
-            //$expected = ($keywordStart - 1);
-            $expected = ($arrayNameStart -1 );
+        } else if (($tokens[$arrayEnd]['column']-1) != $expected) {
+            // NOPE, check to make sure it's on the same line as the variable
+
+
+
             $found    = ($tokens[$arrayEnd]['column'] - 1);
             $error    = 'Closing parenthesis not aligned correctly; expected %s space(s) but found %s';
-            $data     = array(
-                         $expected,
-                         $found,
-                        );
+            $data     = [
+                $expected,
+                $found,
+            ];
 
             $fix = $phpcsFile->addFixableError($error, $arrayEnd, 'CloseBraceNotAligned', $data);
             if ($fix === true) {
@@ -330,7 +344,7 @@ class CodeSnifferContrib_Sniffs_Arrays_ArrayDeclarationSniff implements PHP_Code
 
         $keyUsed    = false;
         $singleUsed = false;
-        $indices    = array();
+        $indices    = [];
         $maxLength  = 0;
 
         if ($tokens[$stackPtr]['code'] === T_ARRAY) {
@@ -596,10 +610,7 @@ class CodeSnifferContrib_Sniffs_Arrays_ArrayDeclarationSniff implements PHP_Code
                     $found = ($tokens[$first]['column'] - 1);
                     if ($found !== $expected) {
                         $error = 'Array value not aligned correctly; expected %s spaces but found %s';
-                        $data  = array(
-                                  $expected,
-                                  $found,
-                                 );
+                        $data  = [$expected, $found];
 
                         $fix = $phpcsFile->addFixableError($error, $value['value'], 'ValueNotAligned', $data);
                         if ($fix === true) {
@@ -647,9 +658,18 @@ class CodeSnifferContrib_Sniffs_Arrays_ArrayDeclarationSniff implements PHP_Code
 
         $variable = $phpcsFile->findPrevious(self::KEY_THINGS, $nextToken, null, false, null, true);
         $arrayNameStart = $tokens[$variable]['column'];
+        $arrayLocStart = floatval($tokens[$variable]['line'].'.'.$tokens[$variable]['column']);
 
-        //$indicesStart  = ($keywordStart + 1);
-        $indicesStart =  ($arrayNameStart + 4);
+        // Find the previous open.
+        $variable = $phpcsFile->findPrevious($this->register(), $arrayStart, null, false, null, true);
+        $openLocStart = floatval($tokens[$variable]['line'].'.'.$tokens[$variable]['column']);
+
+        if(($openLocStart-1) < $arrayLocStart) {
+            $indicesStart  = ($arrayNameStart + 4);
+        } else {
+            $indicesStart = ceil($openLocStart) - 4;
+        }
+
         $arrowStart    = ($indicesStart + $maxLength + 1);
         $valueStart    = ($arrowStart + 3);
         $indexLine     = $tokens[$stackPtr]['line'];
@@ -695,7 +715,7 @@ class CodeSnifferContrib_Sniffs_Arrays_ArrayDeclarationSniff implements PHP_Code
                 continue;
             }
 
-            if ($tokens[$index['index']]['column'] !== $indicesStart) {
+            if ($tokens[$index['index']]['column'] != $indicesStart) {
                 $expected = ($indicesStart - 1);
                 $found    = ($tokens[$index['index']]['column'] - 1);
                 $error    = 'Array key not aligned correctly; expected %s spaces but found %s';
@@ -716,7 +736,7 @@ class CodeSnifferContrib_Sniffs_Arrays_ArrayDeclarationSniff implements PHP_Code
                 continue;
             }
 
-            if ($tokens[$index['arrow']]['column'] !== $arrowStart) {
+            if ($tokens[$index['arrow']]['column'] != $arrowStart) {
                 $expected = ($arrowStart - (strlen($index['index_content']) + $tokens[$index['index']]['column']));
                 $found    = ($tokens[$index['arrow']]['column'] - (strlen($index['index_content']) + $tokens[$index['index']]['column']));
                 $error    = 'Array double arrow not aligned correctly; expected %s space(s) but found %s';
@@ -737,7 +757,7 @@ class CodeSnifferContrib_Sniffs_Arrays_ArrayDeclarationSniff implements PHP_Code
                 continue;
             }
 
-            if ($tokens[$index['value']]['column'] !== $valueStart) {
+            if ($tokens[$index['value']]['column'] != $valueStart) {
                 $expected = ($valueStart - ($tokens[$index['arrow']]['length'] + $tokens[$index['arrow']]['column']));
                 $found    = ($tokens[$index['value']]['column'] - ($tokens[$index['arrow']]['length'] + $tokens[$index['arrow']]['column']));
                 if ($found < 0) {
