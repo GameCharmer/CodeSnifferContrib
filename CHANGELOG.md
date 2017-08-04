@@ -8,6 +8,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
  
  
+[1.0.6](https://github.com/GameCharmer/CodeSnifferContrib/releases/tag/1.0.6)
+ - @GameCharmer add support for @deprecated tag
+ - @GameCharmer WIP: Array alignment stuff
+
 [1.0.5](https://github.com/GameCharmer/CodeSnifferContrib/releases/tag/1.0.5)
  - @GameCharmer Add support for new "om-" tags for the object manager
 
