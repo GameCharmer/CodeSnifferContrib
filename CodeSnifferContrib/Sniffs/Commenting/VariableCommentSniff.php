@@ -53,6 +53,13 @@ class CodeSnifferContrib_Sniffs_Commenting_VariableCommentSniff extends PHP_Code
                 } else {
                     $foundVar = $tag;
                 }
+            } else if ($tokens[$tag]['content'] === '@deprecated') {
+                // Make sure the tag isn't empty.
+                $string = $phpcsFile->findNext(T_DOC_COMMENT_STRING, $tag, $commentEnd);
+                if ($string === false || $tokens[$string]['line'] !== $tokens[$tag]['line']) {
+                    $error = 'Content missing for @deprecated tag in member variable comment';
+                    $phpcsFile->addError($error, $tag, 'EmptyDeprecateds');
+                }
             } else if ($tokens[$tag]['content'] === '@see') {
                 // Make sure the tag isn't empty.
                 $string = $phpcsFile->findNext(T_DOC_COMMENT_STRING, $tag, $commentEnd);
