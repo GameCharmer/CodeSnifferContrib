@@ -7,10 +7,15 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased](https://github.com/GameCharmer/CodeSnifferContrib)
 
  
+
+[2.0.0](https://github.com/GameCharmer/CodeSnifferContrib/releases/tag/2.0.0)
+ - @GameCharmer Updated to the latest PHP_CodeSniffer (3.3.0)
+ 
  
 [1.0.6](https://github.com/GameCharmer/CodeSnifferContrib/releases/tag/1.0.6)
  - @GameCharmer add support for @deprecated tag
  - @GameCharmer WIP: Array alignment stuff
+
 
 [1.0.5](https://github.com/GameCharmer/CodeSnifferContrib/releases/tag/1.0.5)
  - @GameCharmer Add support for new "om-" tags for the object manager
