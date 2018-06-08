@@ -1,22 +1,27 @@
 <?php
+namespace GCWorld\CodeSnifferContrib\Sniffs\Commenting;
+
+use PHP_CodeSniffer\Sniffs\AbstractVariableSniff;
+use PHP_CodeSniffer\Files\File;
+use PHP_CodeSniffer\Util\Common;
 
 /**
  * Class CodeSnifferContrib_Sniffs_Commenting_VariableCommentSniff
  */
-class CodeSnifferContrib_Sniffs_Commenting_VariableCommentSniff extends PHP_CodeSniffer_Standards_AbstractVariableSniff
+class CodeSnifferContrib_Sniffs_Commenting_VariableCommentSniff extends AbstractVariableSniff
 {
 
 
     /**
      * Called to process class member vars.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param File $phpcsFile The file being scanned.
      * @param int                  $stackPtr  The position of the current token
      *                                        in the stack passed in $tokens.
      *
      * @return void
      */
-    public function processMemberVar(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function processMemberVar(File $phpcsFile, $stackPtr)
     {
         $tokens = $phpcsFile->getTokens();
         $ignore = array(
@@ -96,7 +101,7 @@ class CodeSnifferContrib_Sniffs_Commenting_VariableCommentSniff extends PHP_Code
         }
 
         $varType       = $tokens[($foundVar + 2)]['content'];
-        $suggestedType = PHP_CodeSniffer::suggestType($varType);
+        $suggestedType = Common::suggestType($varType);
         $this->translateName($suggestedType);
 
         if ($varType !== $suggestedType) {
@@ -120,13 +125,13 @@ class CodeSnifferContrib_Sniffs_Commenting_VariableCommentSniff extends PHP_Code
      *
      * Not required for this sniff.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile The PHP_CodeSniffer file where this token was found.
+     * @param File $phpcsFile The PHP_CodeSniffer file where this token was found.
      * @param int                  $stackPtr  The position where the double quoted
      *                                        string was found.
      *
      * @return void
      */
-    protected function processVariable(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    protected function processVariable(File $phpcsFile, $stackPtr)
     {
 
     }//end processVariable()
@@ -137,13 +142,13 @@ class CodeSnifferContrib_Sniffs_Commenting_VariableCommentSniff extends PHP_Code
      *
      * Not required for this sniff.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile The PHP_CodeSniffer file where this token was found.
+     * @param File $phpcsFile The PHP_CodeSniffer file where this token was found.
      * @param int                  $stackPtr  The position where the double quoted
      *                                        string was found.
      *
      * @return void
      */
-    protected function processVariableInString(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    protected function processVariableInString(File $phpcsFile, $stackPtr)
     {
 
     }//end processVariableInString()

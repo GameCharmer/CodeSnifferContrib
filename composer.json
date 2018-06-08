@@ -13,15 +13,16 @@
     }
   ],
   "autoload": {
-    "classmap": [
-      "CodeSnifferContrib/Sniffs/"
-    ]
+    "psr-4": {
+      "GCWorld\\CodeSnifferContrib\\": "src/"
+    }
   },
+
   "require": {
     "php": ">=7.1",
     "ext-tokenizer": "*",
     "ext-xmlwriter": "*",
     "ext-simplexml": "*",
-    "squizlabs/php_codesniffer": "^3.2"
+    "squizlabs/php_codesniffer": "^3.3"
   }
 }
