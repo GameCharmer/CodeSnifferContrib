@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<ruleset name="CodeSnifferContrib">
+<ruleset name="CodeSnifferContrib" namespace="GCWorld\CodeSnifferContrib">
     <rule ref="GCWorld.CodeSnifferContrib.Commenting.ClassComment"/>
     <rule ref="GCWorld.CodeSnifferContrib.Commenting.FunctionComment">
         <!-- I didn't program a missing param comment into this beast, but it's there somehow... -->
