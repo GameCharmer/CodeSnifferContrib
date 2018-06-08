@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
 <ruleset name="CodeSnifferContrib" namespace="GCWorld\CodeSnifferContrib">
-    <rule ref="GCWorld.CodeSnifferContrib.Commenting.ClassComment"/>
-    <rule ref="GCWorld.CodeSnifferContrib.Commenting.FunctionComment">
+    <rule ref="CodeSnifferContrib.Commenting.ClassComment"/>
+    <rule ref="CodeSnifferContrib.Commenting.FunctionComment">
         <!-- I didn't program a missing param comment into this beast, but it's there somehow... -->
-        <exclude name="GCWorld.CodeSnifferContrib.Commenting.FunctionComment.MissingParamComment"/>
-        <exclude name="GCWorld.CodeSnifferContrib.Commenting.FunctionComment.ParamCommentFullStop"/>
-        <exclude name="GCWorld.CodeSnifferContrib.Commenting.FunctionComment.EmptyThrows"/>
-        <exclude name="GCWorld.CodeSnifferContrib.Commenting.VariableComment.Missing"/>
+        <exclude name="CodeSnifferContrib.Commenting.FunctionComment.MissingParamComment"/>
+        <exclude name="CodeSnifferContrib.Commenting.FunctionComment.ParamCommentFullStop"/>
+        <exclude name="CodeSnifferContrib.Commenting.FunctionComment.EmptyThrows"/>
+        <exclude name="CodeSnifferContrib.Commenting.VariableComment.Missing"/>
     </rule>
     <rule ref="Squiz.Commenting">
         <exclude name="Squiz.Commenting.BlockComment"/>
