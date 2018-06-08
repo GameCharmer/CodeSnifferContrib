@@ -6,12 +6,10 @@ use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Common;
 
 /**
- * Class CodeSnifferContrib_Sniffs_Commenting_VariableCommentSniff
+ * Class VariableCommentSniff
  */
-class CodeSnifferContrib_Sniffs_Commenting_VariableCommentSniff extends AbstractVariableSniff
+class VariableCommentSniff extends AbstractVariableSniff
 {
-
-
     /**
      * Called to process class member vars.
      *

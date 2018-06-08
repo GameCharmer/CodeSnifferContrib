@@ -3,13 +3,13 @@ namespace GCWorld\CodeSnifferContrib\Sniffs\Commenting;
 
 use PHP_CodeSniffer\Config;
 use PHP_CodeSniffer\Files\File;
-use PHP_CodeSniffer\Standards\PEAR\Sniffs\Commenting\FunctionCommentSniff;
+use PHP_CodeSniffer\Standards\PEAR\Sniffs\Commenting\FunctionCommentSniff AS base;
 use PHP_CodeSniffer\Util\Common;
 
 /**
  * Class FunctionCommentSniff
  */
-class CodeSnifferContrib_Sniffs_Commenting_FunctionCommentSniff extends FunctionCommentSniff
+class FunctionCommentSniff extends base
 {
     protected $_phpVersion = null;
 
