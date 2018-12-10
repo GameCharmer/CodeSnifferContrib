@@ -125,10 +125,10 @@ class FunctionCommentSniff extends base
                     if (isset($tokens[$stackPtr]['scope_closer']) === true) {
                         $endToken    = $tokens[$stackPtr]['scope_closer'];
                         $returnToken = $phpcsFile->findNext(array(T_RETURN, T_YIELD), $stackPtr, $endToken);
-                        if ($returnToken === false) {
-                            $error = 'Function return type is not void, but function has no return statement';
-                            $phpcsFile->addError($error, $return, 'InvalidNoReturn');
-                        } else {
+                        if ($returnToken !== false) {
+//                            $error = 'Function return type is not void, but function has no return statement';
+//                            $phpcsFile->addError($error, $return, 'InvalidNoReturn');
+//                        } else {
                             $semicolon = $phpcsFile->findNext(T_WHITESPACE, ($returnToken + 1), null, true);
                             if ($tokens[$semicolon]['code'] === T_SEMICOLON) {
                                 $error = 'Function return type is not void, but function is returning void here';
