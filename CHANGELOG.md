@@ -8,6 +8,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
  
 
+[2.0.1](https://github.com/GameCharmer/CodeSnifferContrib/releases/tag/2.0.1)
+ - @GameCharmer Patch bad behavior in function comment invalid no return
+
+
 [2.0.0](https://github.com/GameCharmer/CodeSnifferContrib/releases/tag/2.0.0)
  - @GameCharmer Updated to the latest PHP_CodeSniffer (3.3.0)
  
