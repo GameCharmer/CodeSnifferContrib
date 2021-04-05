@@ -8,6 +8,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
  
 
+[2.0.2](https://github.com/GameCharmer/CodeSnifferContrib/releases/tag/2.0.2)
+ - @GameCharmer Patch bad string usage (PHP8.0)
+
+
+
 [2.0.1](https://github.com/GameCharmer/CodeSnifferContrib/releases/tag/2.0.1)
  - @GameCharmer Patch bad behavior in function comment invalid no return
 
