@@ -415,22 +415,20 @@ class FunctionCommentSniff extends PEARFunctionCommentSniff
                     $suggestedTypeHint = $suggestedName;
                 }
 
-                if ($this->phpVersion >= 70000) {
-                    if ($suggestedName === 'string') {
-                        $suggestedTypeHint = 'string';
-                    } else if ($suggestedName === 'int' || $suggestedName === 'integer') {
-                        $suggestedTypeHint = 'int';
-                    } else if ($suggestedName === 'float') {
-                        $suggestedTypeHint = 'float';
-                    } else if ($suggestedName === 'bool' || $suggestedName === 'boolean') {
-                        $suggestedTypeHint = 'bool';
-                    }
+                if ($suggestedName === 'string') {
+                    $suggestedTypeHint = 'string';
+                } elseif ($suggestedName === 'int' || $suggestedName === 'integer') {
+                    $suggestedTypeHint = 'int';
+                } elseif ($suggestedName === 'float') {
+                    $suggestedTypeHint = 'float';
+                } elseif ($suggestedName === 'bool' || $suggestedName === 'boolean') {
+                    $suggestedTypeHint = 'bool';
+                } elseif ($suggestedName === 'mixed') {
+                    $suggestedTypeHint = 'mixed';
                 }
 
-                if ($this->phpVersion >= 70200) {
-                    if ($suggestedName === 'object') {
-                        $suggestedTypeHint = 'object';
-                    }
+                if ($suggestedName === 'object') {
+                    $suggestedTypeHint = 'object';
                 }
 
                 if ($suggestedTypeHint !== '' && isset($realParams[$pos]) === true) {
@@ -744,6 +742,8 @@ class FunctionCommentSniff extends PEARFunctionCommentSniff
                 case 'array()':
                 case 'array':
                     return 'array';
+                case 'mixed':
+                    return 'mixed';
             }//end switch
 
             if (strpos($lowerVarType, 'array(') !== false) {
