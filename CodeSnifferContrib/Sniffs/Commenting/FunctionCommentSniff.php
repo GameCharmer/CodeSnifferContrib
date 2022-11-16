@@ -438,6 +438,11 @@ class FunctionCommentSniff extends PEARFunctionCommentSniff
                     $compareTypeHint = substr($suggestedTypeHint, (strlen($typeHint) * -1));
 
                     if ($typeHint === '') {
+                        // Do not force injecting mixed as a type hint
+                        if($suggestedTypeHint === 'mixed') {
+                            continue;
+                        }
+
                         $error = 'Type hint "%s" missing for %s';
                         $data  = [
                             $suggestedTypeHint,
