@@ -7,12 +7,9 @@ use PHP_CodeSniffer\Util\Tokens;
 
 /**
  * Class ClassCommentSniff
- * @package GCWorld\CodeSnifferContrib\Sniffs\Commenting
  */
 class ClassCommentSniff implements Sniff
 {
-
-
     /**
      * Returns an array of tokens this test wants to listen for.
      *
@@ -22,8 +19,7 @@ class ClassCommentSniff implements Sniff
     {
         return array(T_CLASS);
 
-    }//end register()
-
+    }
 
     /**
      * Processes this test, when one of its tokens is encountered.
@@ -65,23 +61,26 @@ class ClassCommentSniff implements Sniff
         foreach ($tokens[$commentStart]['comment_tags'] as $tag) {
             $error = '%s tag is not allowed in class comment';
             $data  = array($tokens[$tag]['content']);
-            if (strpos($tokens[$tag]['content'], '@router') === 0) {
+            if (str_starts_with($tokens[$tag]['content'], '@router')) {
                 continue;
             }
-            if (strpos($tokens[$tag]['content'], '@om-') === 0) {
+            if (str_starts_with($tokens[$tag]['content'], '@phpstan')) {
+                continue;
+            }
+            if (str_starts_with($tokens[$tag]['content'], '@om-')) {
+                continue;
+            }
+            if (str_starts_with($tokens[$tag]['content'], '@SuppressWarnings')) {
                 continue;
             }
             if (in_array(strtolower($tokens[$tag]['content']),['@package','@todo','@todo:'])) {
-                continue;
-            }
-            if (strpos($tokens[$tag]['content'],'@SuppressWarnings') === 0) {
                 continue;
             }
 
             $phpcsFile->addWarning($error, $tag, 'TagNotAllowed', $data);
         }
 
-        if(strpos($phpcsFile->getFilename(),'/src/Handlers/') !== false) {
+        if(str_contains($phpcsFile->getFilename(), '/src/Handlers/')) {
             $required_tags_1 = ['@router-name', '@router-pattern'];
             $required_tags_2 = ['@router-1-name', '@router-1-pattern'];
             foreach ($tokens[$commentStart]['comment_tags'] as $tag) {
@@ -100,9 +99,5 @@ class ClassCommentSniff implements Sniff
                 }
             }
         }
-
-
-    }//end process()
-
-
-}//end class
+    }
+}

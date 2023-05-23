@@ -8,6 +8,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
  
 
+[2.1.2](https://github.com/GameCharmer/CodeSnifferContrib/releases/tag/2.1.2)
+- @GameCharmer Add `phpstan` prefix for allowed tags
+
+
+
 [2.1.1](https://github.com/GameCharmer/CodeSnifferContrib/releases/tag/2.1.1)
 - @GameCharmer allow mixed, but do not force it
 
