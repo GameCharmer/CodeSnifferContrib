@@ -8,6 +8,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
  
 
+[2.1.3](https://github.com/GameCharmer/CodeSnifferContrib/releases/tag/2.1.3)
+- @GameCharmer Add `Squiz.Commenting.PostStatementComment.AnnotationFound` to exclusion list
+
+
+
 [2.1.2](https://github.com/GameCharmer/CodeSnifferContrib/releases/tag/2.1.2)
 - @GameCharmer Add `phpstan` prefix for allowed tags
 

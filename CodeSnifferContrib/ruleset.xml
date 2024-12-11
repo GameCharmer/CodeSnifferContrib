@@ -18,6 +18,7 @@
         <exclude name="Squiz.Commenting.InlineComment"/>
         <exclude name="Squiz.Commenting.LongConditionClosingComment.Missing"/>
         <exclude name="Squiz.Commenting.PostStatementComment.Found"/>
+        <exclude name="Squiz.Commenting.PostStatementComment.AnnotationFound"/>
     </rule>
     <rule ref="PSR2">
         <exclude name="Squiz.Classes.ValidClassName.NotCamelCaps"/>
