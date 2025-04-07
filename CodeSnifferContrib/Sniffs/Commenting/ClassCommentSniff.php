@@ -37,6 +37,11 @@ class ClassCommentSniff implements Sniff
         $find[] = T_WHITESPACE;
 
         $commentEnd = $phpcsFile->findPrevious($find, ($stackPtr - 1), null, true);
+
+        if($tokens[$commentEnd]['code'] == PHPCS_T_ATTRIBUTE_END) {
+            $phpcsFile->recordMetric($stackPtr, 'Class has attribute', 'yes');
+        }
+
         if ($tokens[$commentEnd]['code'] !== T_DOC_COMMENT_CLOSE_TAG
             && $tokens[$commentEnd]['code'] !== T_COMMENT
         ) {
@@ -80,6 +85,10 @@ class ClassCommentSniff implements Sniff
             $phpcsFile->addWarning($error, $tag, 'TagNotAllowed', $data);
         }
 
+        /*
+         * This is a specific feature for our Handler system
+         * which no longer applies in instances where we are using attributes
+         */
         if(str_contains($phpcsFile->getFilename(), '/src/Handlers/')) {
             $required_tags_1 = ['@router-name', '@router-pattern'];
             $required_tags_2 = ['@router-1-name', '@router-1-pattern'];

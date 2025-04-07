@@ -8,6 +8,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
  
 
+[2.1.4](https://github.com/GameCharmer/CodeSnifferContrib/releases/tag/2.1.4)
+- @GameCharmer Allow Class Attributes to deactivate class comment check 
+
+
+
 [2.1.3](https://github.com/GameCharmer/CodeSnifferContrib/releases/tag/2.1.3)
 - @GameCharmer Add `Squiz.Commenting.PostStatementComment.AnnotationFound` to exclusion list
 
