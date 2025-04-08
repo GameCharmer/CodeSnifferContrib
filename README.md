@@ -6,5 +6,5 @@ See [phpcs.example.xml](phpcs.example.xml) for an example of how to implement th
 
 
 ### Version
-2.1.5
+2.1.6
 
