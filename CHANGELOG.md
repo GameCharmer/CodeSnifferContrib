@@ -8,6 +8,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
  
 
+[2.1.5](https://github.com/GameCharmer/CodeSnifferContrib/releases/tag/2.1.5)
+- @GameCharmer Update PHP Version and PHP Code Sniffer minimum version
+
+
+
 [2.1.4](https://github.com/GameCharmer/CodeSnifferContrib/releases/tag/2.1.4)
 - @GameCharmer Allow Class Attributes to deactivate class comment check 
 
