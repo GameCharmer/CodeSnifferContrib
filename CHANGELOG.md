@@ -8,6 +8,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
  
 
+[2.1.7](https://github.com/GameCharmer/CodeSnifferContrib/releases/tag/2.1.7)
+- @GameCharmer It's working! Add a return.
+
+
+
 [2.1.6](https://github.com/GameCharmer/CodeSnifferContrib/releases/tag/2.1.6)
 - @GameCharmer switch from a constant to a simple string
 

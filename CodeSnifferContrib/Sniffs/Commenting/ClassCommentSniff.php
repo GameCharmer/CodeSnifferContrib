@@ -41,6 +41,8 @@ class ClassCommentSniff implements Sniff
         // Note: This is just a string at the moment
         if($tokens[$commentEnd]['code'] == 'PHPCS_T_ATTRIBUTE_END') {
             $phpcsFile->recordMetric($stackPtr, 'Class has attribute', 'yes');
+
+            return;
         }
 
         if ($tokens[$commentEnd]['code'] !== T_DOC_COMMENT_CLOSE_TAG
