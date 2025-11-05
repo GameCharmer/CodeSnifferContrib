@@ -11,7 +11,6 @@ use PHP_CodeSniffer\Util\Common;
  */
 class FunctionCommentSniff extends PEARFunctionCommentSniff
 {
-
     /**
      * An array of variable types for param/var we will check.
      *
@@ -30,14 +29,6 @@ class FunctionCommentSniff extends PEARFunctionCommentSniff
         'resource',
         'callable',
     ];
-
-    /**
-     * The current PHP version.
-     *
-     * @var integer
-     */
-    private ?int $phpVersion = null;
-
 
     /**
      * Process the return comment of this function comment.
@@ -264,15 +255,7 @@ class FunctionCommentSniff extends PEARFunctionCommentSniff
      */
     protected function processParams(File $phpcsFile, int $stackPtr, int $commentStart): void
     {
-        if ($this->phpVersion === null) {
-            $this->phpVersion = Config::getConfigData('php_version');
-            if ($this->phpVersion === null) {
-                $this->phpVersion = PHP_VERSION_ID;
-            }
-        }
-
-        $tokens = $phpcsFile->getTokens();
-
+        $tokens  = $phpcsFile->getTokens();
         $params  = [];
         $maxType = 0;
         $maxVar  = 0;
