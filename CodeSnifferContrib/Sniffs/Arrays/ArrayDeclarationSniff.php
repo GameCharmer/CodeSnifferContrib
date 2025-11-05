@@ -21,7 +21,7 @@ class ArrayDeclarationSniff implements Sniff
      *
      * @return array
      */
-    public function register()
+    public function register(): array
     {
         return [
             T_ARRAY,
@@ -33,9 +33,9 @@ class ArrayDeclarationSniff implements Sniff
     /**
      * @param File $phpcsFile
      * @param int                         $stackPtr
-     * @return int|void
+     * @return void
      */
-    public function process(File $phpcsFile, $stackPtr)
+    public function process(File $phpcsFile, int $stackPtr): void
     {
         $tokens = $phpcsFile->getTokens();
 
@@ -123,7 +123,7 @@ class ArrayDeclarationSniff implements Sniff
      * @param      $arrayStart
      * @param      $arrayEnd
      */
-    public function processSingleLineArray(File $phpcsFile, $stackPtr, $arrayStart, $arrayEnd)
+    public function processSingleLineArray(File $phpcsFile, $stackPtr, $arrayStart, $arrayEnd): void
     {
         $tokens = $phpcsFile->getTokens();
 
@@ -280,14 +280,13 @@ class ArrayDeclarationSniff implements Sniff
      * Processes a multi-line array definition.
      *
      * @param File $phpcsFile  The current file being checked.
-     * @param int  $stackPtr   The position of the current token
-     *                                         in the stack passed in $tokens.
+     * @param int  $stackPtr   The position of the current token in the stack passed in $tokens.
      * @param int  $arrayStart The token that starts the array definition.
      * @param int  $arrayEnd   The token that ends the array definition.
      *
      * @return void
      */
-    public function processMultiLineArray(File $phpcsFile, $stackPtr, $arrayStart, $arrayEnd)
+    public function processMultiLineArray(File $phpcsFile, int $stackPtr, int $arrayStart, int $arrayEnd): void
     {
         $tokens       = $phpcsFile->getTokens();
         $keywordStart = $tokens[$stackPtr]['column'];
@@ -857,9 +856,6 @@ class ArrayDeclarationSniff implements Sniff
                     $phpcsFile->fixer->replaceToken(($nextComma - 1), '');
                 }
             }
-        }//end foreach
-
-    }//end processMultiLineArray()
-
-
-}//end class
+        }
+    }
+}

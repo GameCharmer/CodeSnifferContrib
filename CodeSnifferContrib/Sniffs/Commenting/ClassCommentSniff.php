@@ -15,7 +15,7 @@ class ClassCommentSniff implements Sniff
      *
      * @return array
      */
-    public function register()
+    public function register(): array
     {
         return array(T_CLASS);
 
@@ -30,7 +30,7 @@ class ClassCommentSniff implements Sniff
      *
      * @return void
      */
-    public function process(File $phpcsFile, $stackPtr)
+    public function process(File $phpcsFile, int $stackPtr): void
     {
         $tokens = $phpcsFile->getTokens();
         $find   = Tokens::$methodPrefixes;

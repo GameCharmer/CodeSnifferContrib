@@ -17,7 +17,7 @@ class FunctionCommentSniff extends PEARFunctionCommentSniff
      *
      * @var string[]
      */
-    public static $allowedTypes = [
+    public static array $allowedTypes = [
         'array',
         'bool',
         'boolean',
@@ -36,20 +36,19 @@ class FunctionCommentSniff extends PEARFunctionCommentSniff
      *
      * @var integer
      */
-    private $phpVersion = null;
+    private ?int $phpVersion = null;
 
 
     /**
      * Process the return comment of this function comment.
      *
-     * @param \PHP_CodeSniffer\Files\File $phpcsFile    The file being scanned.
-     * @param int                         $stackPtr     The position of the current token
-     *                                                  in the stack passed in $tokens.
-     * @param int                         $commentStart The position in the stack where the comment started.
+     * @param File $phpcsFile    The file being scanned.
+     * @param int  $stackPtr     The position of the current token in the stack passed in $tokens.
+     * @param int  $commentStart The position in the stack where the comment started.
      *
      * @return void
      */
-    protected function processReturn(File $phpcsFile, $stackPtr, $commentStart)
+    protected function processReturn(File $phpcsFile, int $stackPtr, int $commentStart): void
     {
         $tokens = $phpcsFile->getTokens();
         $return = null;
@@ -178,28 +177,26 @@ class FunctionCommentSniff extends PEARFunctionCommentSniff
                                 $phpcsFile->addError($error, $returnToken, 'InvalidReturnNotVoid');
                             }
                         }
-                    }//end if
-                }//end if
-            }//end if
+                    }
+                }
+            }
         } else {
             $error = 'Missing @return tag in function comment';
             $phpcsFile->addError($error, $tokens[$commentStart]['comment_closer'], 'MissingReturn');
-        }//end if
-
-    }//end processReturn()
+        }
+    }
 
 
     /**
      * Process any throw tags that this function comment has.
      *
-     * @param \PHP_CodeSniffer\Files\File $phpcsFile    The file being scanned.
-     * @param int                         $stackPtr     The position of the current token
-     *                                                  in the stack passed in $tokens.
-     * @param int                         $commentStart The position in the stack where the comment started.
+     * @param File $phpcsFile    The file being scanned.
+     * @param int  $stackPtr     The position of the current token in the stack passed in $tokens.
+     * @param int  $commentStart The position in the stack where the comment started.
      *
      * @return void
      */
-    protected function processThrows(File $phpcsFile, $stackPtr, $commentStart)
+    protected function processThrows(File $phpcsFile, int $stackPtr, int $commentStart): void
     {
         $tokens = $phpcsFile->getTokens();
 
@@ -251,23 +248,21 @@ class FunctionCommentSniff extends PEARFunctionCommentSniff
                     $error = '@throws tag comment must end with a full stop';
                     $phpcsFile->addError($error, ($tag + 2), 'ThrowsNoFullStop');
                 }
-            }//end if
-        }//end foreach
-
-    }//end processThrows()
+            }
+        }
+    }
 
 
     /**
      * Process the function parameter comments.
      *
-     * @param \PHP_CodeSniffer\Files\File $phpcsFile    The file being scanned.
-     * @param int                         $stackPtr     The position of the current token
-     *                                                  in the stack passed in $tokens.
-     * @param int                         $commentStart The position in the stack where the comment started.
+     * @param File $phpcsFile    The file being scanned.
+     * @param int  $stackPtr     The position of the current token in the stack passed in $tokens.
+     * @param int  $commentStart The position in the stack where the comment started.
      *
      * @return void
      */
-    protected function processParams(File $phpcsFile, $stackPtr, $commentStart)
+    protected function processParams(File $phpcsFile, int $stackPtr, int $commentStart): void
     {
         if ($this->phpVersion === null) {
             $this->phpVersion = Config::getConfigData('php_version');
@@ -597,14 +592,14 @@ class FunctionCommentSniff extends PEARFunctionCommentSniff
     /**
      * Check the spacing after the type of a parameter.
      *
-     * @param \PHP_CodeSniffer\Files\File $phpcsFile The file being scanned.
-     * @param array                       $param     The parameter to be checked.
-     * @param int                         $maxType   The maxlength of the longest parameter type.
-     * @param int                         $spacing   The number of spaces to add after the type.
+     * @param File  $phpcsFile The file being scanned.
+     * @param array $param     The parameter to be checked.
+     * @param int   $maxType   The maxlength of the longest parameter type.
+     * @param int   $spacing   The number of spaces to add after the type.
      *
      * @return void
      */
-    protected function checkSpacingAfterParamType(File $phpcsFile, $param, $maxType, $spacing=1)
+    protected function checkSpacingAfterParamType(File $phpcsFile, array $param, int $maxType, int $spacing=1): void
     {
         // Check number of spaces after the type.
         $spaces = ($maxType - strlen($param['type']) + $spacing);
@@ -647,23 +642,22 @@ class FunctionCommentSniff extends PEARFunctionCommentSniff
                 }
 
                 $phpcsFile->fixer->endChangeset();
-            }//end if
-        }//end if
-
-    }//end checkSpacingAfterParamType()
+            }
+        }
+    }
 
 
     /**
      * Check the spacing after the name of a parameter.
      *
-     * @param \PHP_CodeSniffer\Files\File $phpcsFile The file being scanned.
-     * @param array                       $param     The parameter to be checked.
-     * @param int                         $maxVar    The maxlength of the longest parameter name.
-     * @param int                         $spacing   The number of spaces to add after the type.
+     * @param File  $phpcsFile The file being scanned.
+     * @param array $param     The parameter to be checked.
+     * @param int   $maxVar    The maxlength of the longest parameter name.
+     * @param int   $spacing   The number of spaces to add after the type.
      *
      * @return void
      */
-    protected function checkSpacingAfterParamName(File $phpcsFile, $param, $maxVar, $spacing=1)
+    protected function checkSpacingAfterParamName(File $phpcsFile, array $param, int $maxVar, int $spacing=1): void
     {
         // Check number of spaces after the var name.
         $spaces = ($maxVar - strlen($param['var']) + $spacing);
@@ -723,7 +717,7 @@ class FunctionCommentSniff extends PEARFunctionCommentSniff
      *
      * @return string
      */
-    public static function suggestType($varType)
+    public static function suggestType(string $varType): string
     {
         if ($varType === '') {
             return '';
@@ -751,7 +745,7 @@ class FunctionCommentSniff extends PEARFunctionCommentSniff
                     return 'mixed';
             }//end switch
 
-            if (strpos($lowerVarType, 'array(') !== false) {
+            if (str_contains($lowerVarType, 'array(')) {
                 // Valid array declaration:
                 // array, array(type), array(type1 => type2).
                 $matches = [];
@@ -783,9 +777,7 @@ class FunctionCommentSniff extends PEARFunctionCommentSniff
             } else {
                 // Must be a custom type name.
                 return $varType;
-            }//end if
-        }//end if
-
-    }//end suggestType()
-
-}//end class
+            }
+        }
+    }
+}

@@ -14,12 +14,11 @@ class VariableCommentSniff extends AbstractVariableSniff
      * Called to process class member vars.
      *
      * @param File $phpcsFile The file being scanned.
-     * @param int                  $stackPtr  The position of the current token
-     *                                        in the stack passed in $tokens.
+     * @param int  $stackPtr  The position of the current token in the stack passed in $tokens.
      *
      * @return void
      */
-    public function processMemberVar(File $phpcsFile, $stackPtr)
+    public function processMemberVar(File $phpcsFile, int $stackPtr): void
     {
         $tokens = $phpcsFile->getTokens();
         $ignore = array(
@@ -124,15 +123,14 @@ class VariableCommentSniff extends AbstractVariableSniff
      * Not required for this sniff.
      *
      * @param File $phpcsFile The PHP_CodeSniffer file where this token was found.
-     * @param int                  $stackPtr  The position where the double quoted
-     *                                        string was found.
+     * @param int  $stackPtr  The position where the double quoted string was found.
      *
      * @return void
      */
-    protected function processVariable(File $phpcsFile, $stackPtr)
+    protected function processVariable(File $phpcsFile, int $stackPtr): void
     {
 
-    }//end processVariable()
+    }
 
 
     /**
@@ -141,21 +139,20 @@ class VariableCommentSniff extends AbstractVariableSniff
      * Not required for this sniff.
      *
      * @param File $phpcsFile The PHP_CodeSniffer file where this token was found.
-     * @param int                  $stackPtr  The position where the double quoted
-     *                                        string was found.
+     * @param int  $stackPtr  The position where the double quoted string was found.
      *
      * @return void
      */
-    protected function processVariableInString(File $phpcsFile, $stackPtr)
+    protected function processVariableInString(File $phpcsFile, int $stackPtr)
     {
 
-    }//end processVariableInString()
+    }
 
     /**
      * @param array $suggestedNames
      * @return void
      */
-    protected function translateNames(array &$suggestedNames)
+    protected function translateNames(array &$suggestedNames): void
     {
         foreach ($suggestedNames as $k => &$v) {
             switch ($v) {
@@ -174,7 +171,7 @@ class VariableCommentSniff extends AbstractVariableSniff
      * @param string $name
      * @return void
      */
-    protected function translateName(string &$name)
+    protected function translateName(string &$name): void
     {
         switch($name) {
             case 'boolean':
