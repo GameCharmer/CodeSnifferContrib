@@ -9,7 +9,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
  
 
 [2.2.0](https://github.com/GameCharmer/CodeSnifferContrib/releases/tag/2.2.0)
-- @GameCharmer Update for PHP CS Fixer 4.0.0
+- @GameCharmer Update for PHP CS 4.0.0
 
 
 
